@@ -29,6 +29,9 @@
     "securityType": {
       "value": "VMGuestStateOnly"
     },
+    "osDiskType": {
+      "value": "StandardSSD_LRS"
+    },
     "redisVersion": {
       "value": "3.0.0"
     },

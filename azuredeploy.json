@@ -71,13 +71,6 @@
         "description": "The flag allowing to enable or disable provisioning of the jumpbox VM that can be used to access the Redis nodes"
       }
     },
-    "vmSize": {
-      "type": "string",
-      "defaultValue": "Standard_EC8ads_v5",
-      "metadata": {
-        "description": "Size of the VM."
-      }
-    },
     "jumpboxVMSize": {
       "type": "string",
       "defaultValue": "Standard_D2s_v6",
@@ -131,6 +124,29 @@
         "description": "The sasToken required to access _artifactsLocation.  When the template is deployed using the accompanying scripts, a sasToken will be automatically generated. Use the defaultValue if the staging location is not secured."
       },
       "defaultValue": ""
+    },
+    "osDiskType": {
+      "type": "string",
+      "defaultValue": "StandardSSD_LRS",
+      "allowedValues": [
+        "Premium_LRS",
+        "Standard_LRS",
+        "StandardSSD_LRS"
+      ],
+      "metadata": {
+        "description": "OS disk type of the VM."
+      }
+    },
+    "securityType": {
+      "type": "string",
+      "defaultValue": "VMGuestStateOnly",
+      "allowedValues": [
+        "VMGuestStateOnly",
+        "DiskWithVMGuestState"
+      ],
+      "metadata": {
+          "description": "VM security type."
+      }
     }
   },
   "variables": {
@@ -304,6 +320,12 @@
           },
           "location": {
             "value": "[parameters('location')]"
+          },
+          "osDiskType": {
+            "value": "[parameters('osDiskType')]"
+          },
+          "securityType": {
+            "value": "[parameters('securityType')]"
           }
         }
       }
