@@ -156,8 +156,8 @@
     },
     "osFamilyUbuntu": {
       "imagePublisher": "Canonical",
-      "imageOffer": "UbuntuServer",
-      "imageSKU": "22.04-LTS"
+      "imageOffer": "0001-com-ubuntu-server-jammy",
+      "imageSKU": " 22_04-lts-gen2"
     },
     "commonSettings": {
       "availabilitySetName": "redisAvailSet"
