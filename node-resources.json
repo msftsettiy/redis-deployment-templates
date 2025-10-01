@@ -84,7 +84,7 @@
     {
       "type": "Microsoft.Compute/virtualMachines",
       "name": "[concat('vmMember', parameters('machineSettings').machineIndex)]",
-      "apiVersion": "2017-03-30",
+      "apiVersion": "2021-07-01",
       "location": "[parameters('location')]",
       "dependsOn": [
         "[resourceId('Microsoft.Network/networkInterfaces/', concat('nicMember', parameters('machineSettings').machineIndex))]"
