@@ -129,7 +129,7 @@
   "variables": {
     "deploymentSize": {
        "Small": {
-         "vmSizeMember": "Standard_EC4ads_v5",
+         "vmSizeMember": "Standard_EC2ads_v5",
          "numberOfMasters": 3,
          "numberOfSlaves": 0,
          "totalMemberCount": 3,
@@ -137,7 +137,7 @@
          "vmTemplate": "[uri(parameters('_artifactsLocation'), concat('node-resources.json', parameters('_artifactsLocationSasToken')))]"
        },
        "Medium": {
-         "vmSizeMember": "Standard_EC8ads_v5",
+         "vmSizeMember": "Standard_EC4ads_v5",
          "numberOfMasters": 3,
          "numberOfSlaves": 3,
          "totalMemberCount": 6,
@@ -145,7 +145,7 @@
          "vmTemplate": "[uri(parameters('_artifactsLocation'), concat('node-resources.json', parameters('_artifactsLocationSasToken')))]"
        },
        "Large": {
-         "vmSizeMember": "Standard_EC16ads_v5",
+         "vmSizeMember": "Standard_EC8ads_v5",
          "numberOfMasters": 3,
          "numberOfSlaves": 6,
          "totalMemberCount": 9,
