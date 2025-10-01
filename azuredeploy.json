@@ -369,6 +369,12 @@
           },
           "location": {
             "value": "[parameters('location')]"
+          },
+          "osDiskType": {
+            "value": "[parameters('osDiskType')]"
+          },
+          "securityType": {
+            "value": "[parameters('securityType')]"
           }
         }
       }
