@@ -113,7 +113,7 @@
             "secureBootEnabled": "[parameters('secureBootEnabled')]",
             "vTpmEnabled": "true"
           },
-          "securityType" : "TrustedLaunch"
+          "securityType" : "ConfidentialVM"
         },
         "storageProfile": {
           "imageReference": "[parameters('machineSettings').osImageReference]",
