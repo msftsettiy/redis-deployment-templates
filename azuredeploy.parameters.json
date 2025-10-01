@@ -1,0 +1,45 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "adminUsername": {
+      "value": "redis-cluster-admin"
+    },
+    "adminPasswordOrKey": {
+      "value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC48++ouHxRIYHDNn59PSEOthQIWx/lfDt5ImLR839jCswopHJ2WK4pwmSvCeH8OUDSxSRddi6OuZqpYCQOHgRscZgqj9QukkGdRkoY/TYD/B1zdFnMbDbu5hsvxcjgifNvH5LpRl+VuVRZX3B1xil83pjdBIBn3LXSXubY9P9c5Gm0F/oNXDsaunvwYly4gERWcfOmG3mwenrcQuJ7s8XcKocZsYbf31OxO6wXeW5tIydpFcK2/XdsniR8PfazyHPks86p5h0Abk+rX6a7jsLOrkBFsvyPgi0D6PzD75Go4Ji385OVvWq0Zuf/wgmSwyg3aVWjDDx1a7FrEt6L657qOiBaWWr3MTW84I99BJRQkK/sQSxiWZ6X9DlO+pJZzA5e4Yw7qxF4W59xAKyNELnRlt5Yci1yaJR4yWoIjyeGEF671FLdGUbHJfNCCZZo9OzhSoZgzSwNjFgrs0h/tm4tNUHJgVuyllKO9EsHY0IqeVyK69mNnpjV89rJV2OL5S8= settiy@settiy-dev3"
+    },
+    "authenticationType": {
+      "value": "sshPublicKey"
+    },
+    "virtualNetworkName": {
+      "value": "acl-redis-vnet"
+    },
+    "subnetName": {
+      "value": "acl-redis-subnet1"
+    },
+    "addressPrefix": {
+      "value": "10.0.0.0/16"
+    },
+    "subnetPrefix": {
+      "value": "10.0.0.0/24"
+    },
+    "nodeAddressPrefix": {
+      "value": "10.0.0.1"
+    },
+    "redisVersion": {
+      "value": "3.0.0"
+    },
+    "redisClusterName": {
+      "value": "acl-redis-cluster"
+    },
+    "jumpbox": {
+      "value": "Enabled"
+    },
+    "tshirtSize": {
+      "value": "Medium"
+    },
+    "location": {
+		  "value": "East US"
+	  }
+  }
+}
