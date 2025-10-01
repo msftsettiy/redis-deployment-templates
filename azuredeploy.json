@@ -147,6 +147,17 @@
       "metadata": {
           "description": "VM security type."
       }
+    },
+     "secureBootEnabled": {
+      "type": "string",
+      "defaultValue": "true",
+      "allowedValues": [
+        "true",
+        "false"
+      ],
+      "metadata": {
+        "description": "Secure Boot setting of the VM."
+      }
     }
   },
   "variables": {
@@ -326,6 +337,9 @@
           },
           "securityType": {
             "value": "[parameters('securityType')]"
+          },
+          "secureBootEnabled": {
+            "value": "[parameters('secureBootEnabled')]"
           }
         }
       }
@@ -375,6 +389,9 @@
           },
           "securityType": {
             "value": "[parameters('securityType')]"
+          },
+          "secureBootEnabled": {
+            "value": "[parameters('secureBootEnabled')]"
           }
         }
       }

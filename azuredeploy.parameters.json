@@ -32,6 +32,9 @@
     "osDiskType": {
       "value": "StandardSSD_LRS"
     },
+    "secureBootEnabled": {
+      "value": true
+    },
     "redisVersion": {
       "value": "3.0.0"
     },

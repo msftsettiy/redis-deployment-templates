@@ -46,6 +46,12 @@
       "metadata": {
           "description": "VM security type."
       }
+    },
+    "secureBootEnabled": {
+      "type": "bool",
+      "metadata": {
+          "description": "Enable or disable secure boot."
+      }
     }
   },
   "variables": {
@@ -101,6 +107,13 @@
           "adminUsername": "[parameters('machineSettings').adminUsername]",
           "adminPassword": "[parameters('adminPasswordOrKey')]",
           "linuxConfiguration": "[if(equals(parameters('authenticationType'), 'password'), json('null'), variables('linuxConfiguration'))]"
+        },
+        "securityProfile": {
+          "uefiSettings" : {
+            "secureBootEnabled": "[parameters('secureBootEnabled')]",
+            "vTpmEnabled": "true"
+          },
+          "securityType" : "ConfidentialVM"
         },
         "storageProfile": {
           "imageReference": "[parameters('machineSettings').osImageReference]",
