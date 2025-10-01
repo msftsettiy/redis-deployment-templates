@@ -78,6 +78,13 @@
         "description": "Size of the VM."
       }
     },
+    "jumpboxVMSize": {
+      "type": "string",
+      "defaultValue": "Standard_A4_v2",
+      "metadata": {
+        "description": "Size of the VM."
+      }
+    },
     "tshirtSize": {
       "type": "string",
       "defaultValue": "Medium",
@@ -249,7 +256,7 @@
             "value": "[parameters('location')]"
           },
           "vmSize": {
-              "value": "[parameters('vmSize')]"
+              "value": "[parameters('jumpboxVMSize')]"
           }
         }
       }
