@@ -48,7 +48,7 @@
       }
     },
     "secureBootEnabled": {
-      "type": "bool",
+      "type": "string",
       "metadata": {
           "description": "Enable or disable secure boot."
       }
