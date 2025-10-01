@@ -157,7 +157,7 @@
     "osFamilyUbuntu": {
       "imagePublisher": "Canonical",
       "imageOffer": "0001-com-ubuntu-server-jammy",
-      "imageSKU": " 22_04-lts-gen2"
+      "imageSKU": "Ubuntu2204"
     },
     "commonSettings": {
       "availabilitySetName": "redisAvailSet"
