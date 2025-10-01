@@ -34,6 +34,29 @@
       "metadata": {
         "description": "Location for all resources."
       }
+    },
+    "osDiskType": {
+      "type": "string",
+      "defaultValue": "StandardSSD_LRS",
+      "allowedValues": [
+        "Premium_LRS",
+        "Standard_LRS",
+        "StandardSSD_LRS"
+      ],
+      "metadata": {
+        "description": "OS disk type of the VM."
+      }
+    },
+    "securityType": {
+      "type": "string",
+      "defaultValue": "VMGuestStateOnly",
+      "allowedValues": [
+        "VMGuestStateOnly",
+        "DiskWithVMGuestState"
+      ],
+      "metadata": {
+          "description": "VM security type."
+      }
     }
   },
   "variables": {
@@ -95,7 +118,13 @@
           "osDisk": {
             "name": "[concat('vmMember', parameters('machineSettings').machineIndex,'_OSDisk')]",
             "caching": "ReadWrite",
-            "createOption": "FromImage"
+            "createOption": "FromImage",
+             "managedDisk": {
+              "storageAccountType": "[parameters('osDiskType')]",
+              "securityProfile": {
+                  "securityEncryptionType" : "[parameters('securityType')]"
+              }
+            }
           }
         },
         "networkProfile": {

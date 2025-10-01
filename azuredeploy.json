@@ -80,7 +80,7 @@
     },
     "jumpboxVMSize": {
       "type": "string",
-      "defaultValue": "Standard_A4_v2",
+      "defaultValue": "Standard_D2s_v6",
       "metadata": {
         "description": "Size of the VM."
       }

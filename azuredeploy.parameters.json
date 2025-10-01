@@ -26,6 +26,9 @@
     "nodeAddressPrefix": {
       "value": "10.0.0.1"
     },
+    "securityType": {
+      "value": "VMGuestStateOnly"
+    },
     "redisVersion": {
       "value": "3.0.0"
     },
