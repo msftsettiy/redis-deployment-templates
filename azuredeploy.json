@@ -149,11 +149,11 @@
       }
     },
      "secureBootEnabled": {
-      "type": "string",
-      "defaultValue": "true",
+      "type": "bool",
+      "defaultValue": true,
       "allowedValues": [
-        "true",
-        "false"
+        true,
+        false
       ],
       "metadata": {
         "description": "Secure Boot setting of the VM."
