@@ -39,11 +39,43 @@
         "description": "The network address space for the virtual network"
       }
     },
+    "subnetName": {
+      "type": "string",
+      "defaultValue": "redisSubnet1",
+      "metadata": {
+        "description": "Subnet name for the virtual network that resources will be provisioned in to"
+      }
+    },
+    "subnetPrefix": {
+      "type": "string",
+      "defaultValue": "10.0.0.0/24",
+      "metadata": {
+        "description": "Address space for the virtual network subnet"
+      }
+    },
     "nodeAddressPrefix": {
       "type": "string",
       "defaultValue": "10.0.0.1",
       "metadata": {
         "description": "The IP address prefix that will be used for constructing a static private IP address for each node in the cluster"
+      }
+    },
+    "jumpbox": {
+      "type": "string",
+      "defaultValue": "Disabled",
+      "allowedValues": [
+        "Enabled",
+        "Disabled"
+      ],
+      "metadata": {
+        "description": "The flag allowing to enable or disable provisioning of the jumpbox VM that can be used to access the Redis nodes"
+      }
+    },
+    "jumpboxVMSize": {
+      "type": "string",
+      "defaultValue": "Standard_D2s_v6",
+      "metadata": {
+        "description": "Size of the VM."
       }
     },
     "tshirtSize": {
@@ -126,13 +158,6 @@
       "metadata": {
         "description": "Secure Boot setting of the VM."
       }
-    },
-    "networkSecurityGroupName": {
-      "type": "string",
-      "defaultValue": "defaultRedisClusterNSG",
-      "metadata": {
-        "description": "Name of the network security group to be used for the nodes."
-      }
     }
   },
   "variables": {
@@ -172,11 +197,14 @@
       "availabilitySetName": "redisAvailSet"
     },
     "sharedTemplateUrl": "[uri(parameters('_artifactsLocation'), concat('shared-resources.json', parameters('_artifactsLocationSasToken')))]",
+    "jumpboxTemplateUrl": "[uri(parameters('_artifactsLocation'), concat('jumpbox-resources.json', parameters('_artifactsLocationSasToken')))]",
     "networkSettings": {
       "virtualNetworkName": "[parameters('virtualNetworkName')]",
       "addressPrefix": "[parameters('addressPrefix')]",
-      "machineIpPrefix": "[parameters('nodeAddressPrefix')]",
-      "networkSecurityGroupName": "[parameters('networkSecurityGroupName')]"
+      "subnetName": "[parameters('subnetName')]",
+      "subnetPrefix": "[parameters('subnetPrefix')]",
+      "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'),  parameters('subnetName'))]",
+      "machineIpPrefix": "[parameters('nodeAddressPrefix')]"
     },
     "machineSettings": {
       "adminUsername": "[parameters('adminUsername')]",
@@ -202,30 +230,6 @@
   },
   "resources": [
     {
-      "apiVersion": "2020-11-01",
-      "type": "Microsoft.Network/networkSecurityGroups",
-      "name": "[parameters('networkSecurityGroupName')]",
-      "location": "[parameters('location')]",
-      "properties": {
-        "securityRules": [
-          {
-            "name": "SSH",
-            "properties": {
-              "description": "Allows SSH traffic",
-              "protocol": "Tcp",
-              "sourcePortRange": "*",
-              "destinationPortRange": "22",
-              "sourceAddressPrefix": "*",
-              "destinationAddressPrefix": "*",
-              "access": "Allow",
-              "priority": 100,
-              "direction": "Inbound"
-            }
-          }
-        ]
-      }
-    },
-    {
       "name": "shared-resources",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2020-10-01",
@@ -244,6 +248,42 @@
           },
           "location": {
             "value": "[parameters('location')]"
+          }
+        }
+      }
+    },
+    {
+      "condition": "[equals('Enabled', parameters('jumpbox'))]",
+      "name": "jumpbox-resources",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2020-10-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments/', 'shared-resources')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[variables('jumpboxTemplateUrl')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "networkSettings": {
+            "value": "[variables('networkSettings')]"
+          },
+          "machineSettings": {
+            "value": "[variables('machineSettings')]"
+          },
+          "adminPasswordOrKey": {
+            "value": "[parameters('adminPasswordOrKey')]"
+          },
+          "authenticationType": {
+            "value": "[parameters('authenticationType')]"
+          },
+          "location": {
+            "value": "[parameters('location')]"
+          },
+          "vmSize": {
+              "value": "[parameters('jumpboxVMSize')]"
           }
         }
       }

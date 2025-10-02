@@ -68,23 +68,37 @@
     }},
   "resources": [
     {
+      "apiVersion": "2020-11-01",
+      "type": "Microsoft.Network/publicIPAddresses",
+      "name": "[concat('nodePublicIP', parameters('machineSettings').machineIndex)]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "publicIPAllocationMethod": "Dynamic"
+      }
+    },
+    {
       "type": "Microsoft.Network/networkInterfaces",
       "name": "[concat('nicMember', parameters('machineSettings').machineIndex)]",
       "apiVersion": "2020-11-01",
       "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/publicIPAddresses/', concat('nodePublicIP', parameters('machineSettings').machineIndex))]"
+      ],
       "properties": {
         "ipConfigurations": [
           {
             "name": "ipconfig1",
             "properties": {
-              "privateIPAllocationMethod": "Static",
-              "privateIPAddress": "[concat(parameters('networkSettings').machineIpPrefix, parameters('machineSettings').machineIndex)]",
-              "subnet": {
-                "id": "[parameters('networkSettings').subnetRef]"
+              "privateIPAllocationMethod": "Dynamic",
+               "publicIPAddress": {
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses',concat('nodePublicIP', parameters('machineSettings').machineIndex))]"
               }
             }
           }
-        ]
+        ],
+        "networkSecurityGroup": {
+          "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSettings').networkSecurityGroupName)]"
+        }
       }
     },
     {
