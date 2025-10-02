@@ -33,10 +33,7 @@
       "value": "3.0.0"
     },
     "redisClusterName": {
-      "value": "acl-redis-cluster"
-    },
-    "jumpbox": {
-      "value": "Enabled"
+      "value": "aclrediscluster"
     },
     "tshirtSize": {
       "value": "Small"

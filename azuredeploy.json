@@ -67,7 +67,7 @@
     },
     "redisClusterName": {
       "type": "string",
-      "defaultValue": "acl-redis-cluster",
+      "defaultValue": "aclrediscluster",
       "metadata": {
         "description": "The arbitrary name of the Redis cluster"
       }
