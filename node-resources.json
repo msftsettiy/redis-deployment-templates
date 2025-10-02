@@ -89,10 +89,11 @@
           {
             "name": "ipconfig1",
             "properties": {
-              "privateIPAllocationMethod": "Dynamic",
-               "publicIPAddress": {
+              "privateIPAllocationMethod": "Static",
+              "publicIPAddress": {
                 "id": "[resourceId('Microsoft.Network/publicIPAddresses',concat('nodePublicIP', parameters('machineSettings').machineIndex))]"
               },
+              "privateIPAddress": "[concat(parameters('networkSettings').machineIpPrefix, parameters('machineSettings').machineIndex)]",
               "subnet": {
                 "id": "[parameters('networkSettings').subnetRef]"
               }
