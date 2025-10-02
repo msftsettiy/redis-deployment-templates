@@ -92,6 +92,9 @@
               "privateIPAllocationMethod": "Dynamic",
                "publicIPAddress": {
                 "id": "[resourceId('Microsoft.Network/publicIPAddresses',concat('nodePublicIP', parameters('machineSettings').machineIndex))]"
+              },
+              "subnet": {
+                "id": "[parameters('networkSettings').subnetRef]"
               }
             }
           }

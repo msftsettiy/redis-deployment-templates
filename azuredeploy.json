@@ -39,6 +39,20 @@
         "description": "The network address space for the virtual network"
       }
     },
+    "subnetName": {
+      "type": "string",
+      "defaultValue": "redisSubnet1",
+      "metadata": {
+        "description": "Subnet name for the virtual network that resources will be provisioned in to"
+      }
+    },
+    "subnetPrefix": {
+      "type": "string",
+      "defaultValue": "10.0.0.0/24",
+      "metadata": {
+        "description": "Address space for the virtual network subnet"
+      }
+    },
     "nodeAddressPrefix": {
       "type": "string",
       "defaultValue": "10.0.0.1",
@@ -175,6 +189,9 @@
     "networkSettings": {
       "virtualNetworkName": "[parameters('virtualNetworkName')]",
       "addressPrefix": "[parameters('addressPrefix')]",
+      "subnetName": "[parameters('subnetName')]",
+      "subnetPrefix": "[parameters('subnetPrefix')]",
+      "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'),  parameters('subnetName'))]",
       "machineIpPrefix": "[parameters('nodeAddressPrefix')]",
       "networkSecurityGroupName": "[parameters('networkSecurityGroupName')]"
     },
