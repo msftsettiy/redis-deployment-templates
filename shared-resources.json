@@ -45,15 +45,7 @@
           "addressPrefixes": [
             "[parameters('networkSettings').addressPrefix]"
           ]
-        },
-        "subnets": [
-          {
-            "name": "[parameters('networkSettings').subnetName]",
-            "properties": {
-              "addressPrefix": "[parameters('networkSettings').subnetPrefix]"
-            }
-          }
-        ]
+        }
       }
     }
   ]
