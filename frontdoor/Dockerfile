@@ -9,7 +9,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the application code into the container
-COPY frontend.py .
+COPY frontdoor.py .
 
 RUN mkdir -p /app/certs
 
@@ -21,4 +21,4 @@ COPY admin_privk.pem /app/certs/
 EXPOSE 5000
 
 # Command to run the web server
-CMD ["python", "frontend.py"]
+CMD ["python", "frontdoor.py"]
