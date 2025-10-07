@@ -159,14 +159,14 @@
     {
       "type": "Microsoft.Compute/virtualMachines/extensions",
       "name": "[concat('vmMember', parameters('machineSettings').machineIndex, '/installscript')]",
-      "apiVersion": "2020-12-01",
+      "apiVersion": "2024-11-01",
       "location": "[parameters('location')]",
       "dependsOn": [
         "[resourceId('Microsoft.Compute/virtualMachines/', concat('vmMember', parameters('machineSettings').machineIndex))]"
       ],
       "properties": {
         "publisher": "Microsoft.Azure.Extensions",
-        "type": "CustomScript",
+        "type": "CustomScriptExtension",
         "typeHandlerVersion": "2.0",
         "autoUpgradeMinorVersion": true,
         "settings": {
