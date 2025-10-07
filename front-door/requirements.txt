@@ -1,0 +1,5 @@
+azure-core==1.35.1
+azure-identity===1.25.0
+azure-confidentialledger==1.1.1
+Flask==3.1.2
+redis-py-cluster==2.1.3
